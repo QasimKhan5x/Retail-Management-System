@@ -2,10 +2,10 @@ package Payments;
 
 import java.time.LocalDateTime;
 
-abstract public class Payment {
+public class Payment {
     private final String id;
     private final LocalDateTime date;
-    private final double amount;
+    private double amount;
 
     public Payment(String id, LocalDateTime date, double amount) {
         this.id = id;
@@ -28,4 +28,9 @@ abstract public class Payment {
     public double getAmount() {
         return amount;
     }
+
+    public void addAmount(double amount) {
+        this.amount += amount;
+    }
+
 }

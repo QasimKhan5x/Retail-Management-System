@@ -1,11 +1,12 @@
 package Orders;
 //Complete
 public class OrderDetails {
+    private static int IDs = 0;
     private final int orderID;
     private final int quantity;
 
-    public OrderDetails(int orderID, int quantity) {
-        this.orderID = orderID;
+    public OrderDetails(int quantity) {
+        this.orderID = ++IDs;
         this.quantity = quantity;
     }
 

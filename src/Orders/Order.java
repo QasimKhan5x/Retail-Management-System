@@ -6,26 +6,26 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public class Order {
-    private HashMap<Item, OrderDetails> order;
+    private HashMap<Item, OrderDetails> details;
     private double totalPrice = 0;
+    private static int idTotal = 0;
     private final int id;
     private final LocalDateTime receiveDate;
 
-    public Order(HashMap<Item, OrderDetails> order, int id, LocalDateTime receiveDate) {
-        this.id = id;
-        this.order = order;
-        this.receiveDate = receiveDate;
-        for(Item item : order.keySet()) {
+    public Order(HashMap<Item, OrderDetails> details) {
+        this.id = ++idTotal;
+        this.details = details;
+        this.receiveDate = LocalDateTime.now();
+        for(Item item : details.keySet())
             totalPrice += item.getPrice();
-        }
     }
 
     public Order() {
-        this(new HashMap<>(), 0, LocalDateTime.now());
+        this(new HashMap<>());
     }
 
-    public HashMap<Item, OrderDetails> getOrder() {
-        return order;
+    public HashMap<Item, OrderDetails> getDetails() {
+        return details;
     }
 
     public double getTotalPrice() {
@@ -40,9 +40,15 @@ public class Order {
         return this.receiveDate;
     }
 
+    public void addItem(Item item, int quantity) {
+        OrderDetails orderDetails = new OrderDetails(quantity);
+        details.put(item, orderDetails);
+        totalPrice += item.getPrice() * quantity;
+    }
+
     public void printOrders() {
-        for(Item item : order.keySet()) {
-            System.out.println(order.get(item) + " " + item);
+        for(Item item : details.keySet()) {
+            System.out.println(details.get(item) + " " + item);
         }
         System.out.printf("Total Price: %.2f", this.getTotalPrice());
     }

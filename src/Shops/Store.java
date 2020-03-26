@@ -5,19 +5,40 @@ import com.company.Item;
 
 import java.util.HashMap;
 
-abstract public class Store {
+public class Store {
     private final String name;
     private final String address;
+    private double register;
     private HashMap<Item, Integer> inventory;
 
-    public Store(String name, String address, HashMap<Item, Integer> inventory) {
+    public Store(String name, String address, double register, HashMap<Item, Integer> inventory) {
         this.name = name;
         this.address = address;
+        this.register = register;
         this.inventory = inventory;
     }
 
+    public Store(String name, String address, double register) {
+        this.name = name;
+        this.address = address;
+        this.register = register;
+        this.inventory = new HashMap<>();
+    }
+
     public Store() {
-        this(null, null, new HashMap<>());
+        this(null, null, 0,new HashMap<>());
+    }
+
+    public double getRegister() {
+        return register;
+    }
+
+    public void setRegister(double register) {
+        this.register = register;
+    }
+
+    public void setInventory(HashMap<Item, Integer> inventory) {
+        this.inventory = inventory;
     }
 
     public String getName() {
@@ -46,5 +67,15 @@ abstract public class Store {
 
     public void changeItemQuantity(Item item, int amount) {
         inventory.replace(item, inventory.get(item) + amount);
+        if (inventory.get(item) <= 0) inventory.remove(item);
+    }
+
+    @Override
+    public String toString() {
+        String str = "The store " + name + " has the following items:\n";
+        for(Item item : inventory.keySet()) {
+            str += item;
+        }
+        return str;
     }
 }

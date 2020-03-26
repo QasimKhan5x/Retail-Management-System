@@ -2,19 +2,16 @@ package Payments;
 
 import java.time.LocalDateTime;
 
-import Payments.Payment;
-
-// Completed by Abdul Samad
 public class OnlinePayment extends Payment {
 	private long account_no;
 	private String email;
-	private String passwd;
+	private String password;
 	
-	public OnlinePayment(String id, LocalDateTime date, double amount,long account_no,String email,String passwd){
+	public OnlinePayment(String id, LocalDateTime date, double amount,long account_no,String email,String password){
 		super(id,date,amount);
 		this.account_no=account_no;
 		this.email=email;
-		this.passwd=passwd;
+		this.password = password;
 	}
 	
 	public long getAccountNo() {
@@ -26,7 +23,7 @@ public class OnlinePayment extends Payment {
 	}
 	
 	public String getPassword() {
-		return passwd;
+		return password;
 	}
 	
 	@Override
