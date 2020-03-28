@@ -5,28 +5,27 @@ import com.company.Item;
 
 import java.util.HashMap;
 
-public class Store {
-    private final String name;
-    private final String address;
+
+abstract public class Store {
+    private String name;
     private double register;
+    
     private HashMap<Item, Integer> inventory;
 
-    public Store(String name, String address, double register, HashMap<Item, Integer> inventory) {
+    public Store(String name, double register, HashMap<Item, Integer> inventory) {
         this.name = name;
-        this.address = address;
         this.register = register;
         this.inventory = inventory;
     }
 
-    public Store(String name, String address, double register) {
+    public Store(String name, double register) {
         this.name = name;
-        this.address = address;
         this.register = register;
         this.inventory = new HashMap<>();
     }
 
     public Store() {
-        this(null, null, 0,new HashMap<>());
+        this(null,0,new HashMap<>());
     }
 
     public double getRegister() {
@@ -45,9 +44,7 @@ public class Store {
         return name;
     }
 
-    public String getAddress() {
-        return address;
-    }
+    
 
     public HashMap<Item, Integer> getInventory() {
         return inventory;
@@ -60,9 +57,13 @@ public class Store {
             inventory.put(item, quantity);
         }
     }
-
+   //change 
     public void addItem(Item item) {
-        this.addItem(item, 1);
+    	 if (inventory.containsKey(item)) 
+             System.out.println("Already present in the inventory");
+         else
+           	 this.addItem(item, 1);
+   
     }
 
     public void changeItemQuantity(Item item, int amount) {
