@@ -1,6 +1,5 @@
 package Shops;
 
-//Complete
 import com.company.Item;
 
 import java.util.HashMap;
