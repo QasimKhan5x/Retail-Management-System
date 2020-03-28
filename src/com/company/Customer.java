@@ -154,6 +154,7 @@ public class Customer {
 //changes
     public void makePayment(Card card) {
         printBill();
+        System.out.printf("\n%35s","Payment through Card.\n");
         try {
         outlet.setRegister(outlet.getRegister() + order.getTotalPrice());
         //updating amount in cash
@@ -184,6 +185,7 @@ public class Customer {
     
     public void makePayment(OnlinePayment onlinepayment) {
         printBill();
+        System.out.printf("\n%35s","Payment through OnlinePayment.\n");
         try {
         outlet.setRegister(outlet.getRegister() + order.getTotalPrice());
         //updating amount in cash
@@ -213,6 +215,7 @@ public class Customer {
 
     public void makePayment(Cash cash) {
         printBill();
+        System.out.printf("\n%35s","Payment through Cash.\n");
         outlet.setRegister(outlet.getRegister() + order.getTotalPrice());
         //updating amount in cash
         double amount=(double) (cash.getAmount()-order.getTotalPrice());
