@@ -28,6 +28,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return String.format("ID: %d. Name: %s. Price: %.2f.", id, name, price);
+        return String.format("%s Price: %.2f", name, price);
     }
 }

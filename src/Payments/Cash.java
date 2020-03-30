@@ -3,16 +3,15 @@ package Payments;
 
 public class Cash extends Payment {
 	
-	public Cash(String id, double amount) {
-        super(id,amount);
+	public Cash(double amount) {
+        super(amount);
     }
 	
 	public Cash(){
-		this(null,0);
+		this(0);
 	}
 	
 	public String getPaymentDetails() {
-		return String.format("The Payment of cash: "+getAmount());
-		
+		return String.format("Cash payment: "+ getAmount());
 	}
 }

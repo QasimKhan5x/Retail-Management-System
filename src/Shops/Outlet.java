@@ -4,25 +4,28 @@ import com.company.Item;
 import java.util.HashMap;
 
 public class Outlet extends Store {
-	 private String address;
-	 
-	 public Outlet(String name, double register, HashMap<Item, Integer> inventory,String address){
-		 super(name,register,inventory);
-		 this.address=address; 
-	 }
-	 
-	 public Outlet(String name, double register,String address){
-		 super(name,register);
-		 this.address=address; 
-	 }
-	 
-	 public Outlet(){
-		 this(null,0,null);
-	 }
-	 
-	 public String getAddress() {
-	        return address;
-	    }
-	 
-	
-}	
+	private String cashierName;
+
+	public Outlet(String name, String address, double register, String cashierName) {
+		super(name, address, register);
+		this.cashierName = cashierName;
+	}
+
+	public Outlet(String name, String address, double register, HashMap<Item, Integer> inventory, String cashierName) {
+		super(name, address, register, inventory);
+		this.cashierName = cashierName;
+	}
+
+	public String getCashierName() {
+		return cashierName;
+	}
+
+	public void setCashierName(String cashierName) {
+		this.cashierName = cashierName;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + ". Cashier Name: " + getCashierName() + ". Location: " + getAddress();
+	}
+}

@@ -1,32 +1,40 @@
 package Payments;
 
-//need to pull on github
-public class Card extends Payment {
-	private long card_no;
-	private String card_owner;
+import com.company.Customer;
 
-	public Card(String id, double amount,long card_no,String owner) {
-		super(id,amount);
-		this.card_no=card_no;
-		this.card_owner=card_owner;
+public class Card extends Payment {
+	private static int ID = 0;
+	private final int id;
+	private long card_no;
+	private static long cards = 0;
+	private Customer owner;
+
+	public Card(double amount, Customer owner) {
+		super(amount);
+		this.id = ++ID;
+		this.card_no = ++cards;
+		this.owner = owner;
 	}
 	
     public Card() {
-        this(null,0,0L,null);
+        this(0,null);
     }
-	
+
+	public int getId() {
+		return id;
+	}
+
 	public long getCardNo() {
 		return card_no;
 	}
 	
-	public String getOwner() {
-		return card_owner;
+	public Customer getOwner() {
+		return owner;
 	}
-	
-	
-	//@Override
+
 	public String getPaymentDetails() {
-		return String.format("Payment through card of Amount Rs."+getAmount()+" with ID"+getId()+" through the Account Number: "+getCardNo()+" and the owner: "+getOwner());
+		return String.format("Card Payment of Rs."+getAmount()+" with ID "+getId()+" through the\n" +
+				"Account Number: "+getCardNo()+" and the owner: "+getOwner());
 	}
 	
 }
