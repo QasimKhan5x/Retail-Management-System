@@ -70,9 +70,14 @@ public final class Customer {
     
     public void addToCart(Item item, int quantity) {
         order.addItem(item, quantity);
+        Store.changeItemQuantity(item, -quantity);
     }
 
     public void removeFromCart(Item item) {
+        if (Store.getInventory().containsKey(item)) {
+            Store.changeItemQuantity(item, order.getDetails().get(item).getQuantity());
+        } else
+            Store.addItem(item, order.getDetails().get(item).getQuantity());
         order.getDetails().remove(item);
     }
 
@@ -128,9 +133,9 @@ public final class Customer {
             Store.setRegister(Store.getRegister() + order.getTotalPrice());
             payment.setAmount(payment.getAmount() - order.getTotalPrice());
             //update store inventory
-            HashMap<Item, OrderDetails> details = order.getDetails();
-            for (Item item : details.keySet())
-                Store.changeItemQuantity(item, -details.get(item).getQuantity());
+            //HashMap<Item, OrderDetails> details = order.getDetails();
+            //for (Item item : details.keySet())
+            //   Store.changeItemQuantity(item, -details.get(item).getQuantity());
         }
     }
 

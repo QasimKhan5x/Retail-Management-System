@@ -1,7 +1,5 @@
 package Payments;
 
-import java.util.Objects;
-
 public class OnlinePayment extends Payment {
 	private static long accounts = 0;
 	private long account_no;

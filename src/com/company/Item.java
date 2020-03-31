@@ -1,7 +1,5 @@
 package com.company;
 
-//Complete
-
 import java.util.Objects;
 
 public class Item {

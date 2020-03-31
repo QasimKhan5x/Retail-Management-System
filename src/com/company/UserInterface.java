@@ -56,6 +56,8 @@ public class UserInterface {
                         break;
                     }
                     case 3: {
+                        for(Item item : customer.getOrder().getDetails().keySet())
+                            customer.removeFromCart(item);
                         createOrder();
                         payment = choosePayment();
                         System.out.println("Processing your order again");
@@ -253,14 +255,14 @@ public class UserInterface {
 
     public Payment choosePayment() {
         System.out.println("What do you want to pay with?");
-        if (customer.getStoreVisited() instanceof Outlet) {
-            System.out.println("Available options \"card\" and \"cash\"");
-        } else
-            System.out.println("Available options \"card\" and \"online\"");
-        String choice = scanner.nextLine();
         Payment paymentType = null;
         boolean found = false;
         while (!found) {
+            if (customer.getStoreVisited() instanceof Outlet) {
+                System.out.println("Available options \"card\" and \"cash\"");
+            } else
+                System.out.println("Available options \"card\" and \"online\"");
+            String choice = scanner.nextLine();
             switch (choice) {
                 case "card": {
                     for(Payment payment : customer.getPaymentMethods()) {
@@ -269,6 +271,8 @@ public class UserInterface {
                             found = true;
                         }
                     }
+                    if (!found)
+                        System.out.println("You don't have that payment method.");
                     break;
                 }
                 case "cash": {
@@ -278,6 +282,8 @@ public class UserInterface {
                             found = true;
                         }
                     }
+                    if (!found)
+                        System.out.println("You don't have that payment method.");
                     break;
                 }
                 case "online": {
@@ -287,6 +293,8 @@ public class UserInterface {
                             found = true;
                         }
                     }
+                    if (!found)
+                        System.out.println("You don't have that payment method.");
                     break;
                 }
                 default:

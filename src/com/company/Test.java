@@ -56,7 +56,7 @@ public class Test {
 
 
         //online store demo
-        OnlineStore daraz = new OnlineStore("https://www.daraz.pk/");
+        /*OnlineStore daraz = new OnlineStore("https://www.daraz.pk/");
 
         Item chair=new Item("Chair",1000);
         Item jacket=new Item("Jacket",1500);
@@ -106,6 +106,6 @@ public class Test {
         //System.out.println("Amount After payment: "+cash2.getAmount());
         //System.out.println("Amount After payment: "+op.getAmount());
 
-        daraz.showInventory();
+        daraz.showInventory();*/
     }
 }

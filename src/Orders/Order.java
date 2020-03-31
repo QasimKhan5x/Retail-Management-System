@@ -42,9 +42,14 @@ public class Order {
 
     public void addItem(Item item, int quantity) {
         OrderDetails orderDetails = new OrderDetails(quantity);
-        details.put(item, orderDetails);
+        if (details.containsKey(item)) {
+            int current = details.get(item).getQuantity();
+            details.replace(item, new OrderDetails(quantity + current));
+        } else
+            details.put(item, orderDetails);
         totalPrice += item.getPrice() * quantity;
     }
+
 
     public void printOrders() {
         for(Item item : details.keySet()) {

@@ -1,8 +1,5 @@
 package Payments;
 
-
-import java.util.Objects;
-
 abstract public class Payment {
     private double amount;
 
