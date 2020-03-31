@@ -1,5 +1,5 @@
 package Orders;
-//Complete
+
 public class OrderDetails {
     private static int IDs = 0;
     private final int orderID;
@@ -20,6 +20,6 @@ public class OrderDetails {
 
     @Override
     public String toString() {
-        return String.format("Order ID: %.2f. Quantity: %.2f", orderID, quantity);
+        return String.format("Order ID: %d. Quantity: %d", orderID, quantity);
     }
 }

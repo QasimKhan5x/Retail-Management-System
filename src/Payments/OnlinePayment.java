@@ -1,8 +1,8 @@
 package Payments;
 
+import java.util.Objects;
+
 public class OnlinePayment extends Payment {
-	private static int ID = 0;
-	private final int id;
 	private static long accounts = 0;
 	private long account_no;
 	private String email;
@@ -10,7 +10,6 @@ public class OnlinePayment extends Payment {
 	
 	public OnlinePayment(double amount, String email, String password){
 		super(amount);
-		this.id = ++ID;
 		this.account_no = ++accounts;
 		this.email=email;
 		this.password = password;
@@ -18,10 +17,6 @@ public class OnlinePayment extends Payment {
 	
 	public OnlinePayment() {
 		this(0.0, null, null);
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	public long getAccountNo() {
@@ -35,14 +30,25 @@ public class OnlinePayment extends Payment {
 	public String getPassword() {
 		return password;
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+		OnlinePayment that = (OnlinePayment) o;
+		return account_no == that.account_no &&
+				email.equals(that.email) &&
+				password.equals(that.password);
+	}
+
 	public String getPaymentDetails() {
-		return String.format("Online Payment of Amount Rs."+getAmount()+" with ID "+getId()+" through\nthe Account Number: "+getAccountNo());
+		return "Online Payment of Amount Rs."+getAmount()+" through\nthe Account Number: "+getAccountNo();
 	}
 
 	@Override
 	public String toString() {
-		return String.format("ID: %s\nAmount: %.2f\nAccount No: %d\nEmail: %s\nPassword: %s", getId(),getAmount(),getAccountNo(),getEmail(),getPassword());
+		return String.format("Amount: %.2f\nAccount No: %d\nEmail: %s\nPassword: %s", getAmount(),getAccountNo(),getEmail(),getPassword());
 	}
 }
 

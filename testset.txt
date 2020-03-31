@@ -1,0 +1,48 @@
+NUST Bakers
+10000
+Mr. Sharjeel
+C2, NUST, H12, Islamabad
+www.nustbakers.com
+add
+Kitkat
+100
+25
+add
+Prema Milk
+150
+25
+add
+Cake
+500
+5
+add
+Lays
+50
+20
+add
+Cocomo
+10
+10
+exit
+Abdul Samad
+outlet
+card
+25000
+cash
+2000
+exit
+add
+Prema Milk
+2
+add
+Lays
+4
+add
+Cake
+1
+add
+Kitkat
+5
+exit
+card
+no

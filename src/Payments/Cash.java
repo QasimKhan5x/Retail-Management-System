@@ -12,6 +12,6 @@ public class Cash extends Payment {
 	}
 	
 	public String getPaymentDetails() {
-		return String.format("Cash payment: "+ getAmount());
+		return "Cash payment: "+ getAmount();
 	}
 }

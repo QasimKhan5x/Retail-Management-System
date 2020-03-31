@@ -6,47 +6,45 @@ import java.util.HashMap;
 
 
 abstract public class Store {
-    private String name;
+    protected static String name;
     private String address;
-    private double register;
-    private HashMap<Item, Integer> inventory;
+    protected static double register;
+    protected static HashMap<Item, Integer> inventory = new HashMap<>();
 
-    public Store(String name, String address, double register, HashMap<Item, Integer> inventory) {
-        this.name = name;
+    public Store(String address) {
         this.address = address;
-        this.register = register;
-        this.inventory = inventory;
     }
 
-    public Store(String name, String address, double register) {
-        this.name = name;
-        this.address = address;
-        this.register = register;
-        this.inventory = new HashMap<>();
-    }
-
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public static void setName(String storeName) {
+        name = storeName;
     }
 
-    public double getRegister() {
+    public static double getRegister() {
         return register;
     }
 
-    public void setRegister(double register) {
-        this.register = register;
+    public static void setRegister(double amount) {
+        register = amount;
     }
 
-    public HashMap<Item, Integer> getInventory() {
+    public static HashMap<Item, Integer> getInventory() {
         return inventory;
     }
 
-    public void setInventory(HashMap<Item, Integer> inventory) {
-        this.inventory = inventory;
+    public static void setInventory(HashMap<Item, Integer> Inventory) {
+        inventory = Inventory;
+    }
+
+    public static void showInventory() {
+        String str = "The store " + name + " has the following items:\n";
+        for(Item item : inventory.keySet()) {
+            str += item + " Quantity: " + inventory.get(item) + "\n";
+        }
+        System.out.print(str);
     }
 
     public String getAddress() {
@@ -57,26 +55,18 @@ abstract public class Store {
         this.address = address;
     }
 
-    public void showInventory() {
-        String str = "The store " + name + " has the following items:\n";
-        for(Item item : inventory.keySet()) {
-            str += item + " Quantity: " + inventory.get(item) + "\n";
-        }
-        System.out.print(str);
-    }
-
-    public void addItem(Item item, int quantity) {
+    public static void addItem(Item item, int quantity) {
         if (inventory.containsKey(item))
             inventory.replace(item, inventory.get(item) + quantity);
         else
             inventory.put(item, quantity);
     }
 
-    public void addItem(Item item) {
-    	 this.changeItemQuantity(item, 1);
+    public static void addItem(Item item) {
+    	 changeItemQuantity(item, 1);
     }
 
-    public void changeItemQuantity(Item item, int amount) {
+    public static void changeItemQuantity(Item item, int amount) {
         inventory.replace(item, inventory.get(item) + amount);
         if (inventory.get(item) <= 0) inventory.remove(item);
     }

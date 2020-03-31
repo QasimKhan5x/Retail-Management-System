@@ -1,18 +1,10 @@
 package Shops;
 
-import com.company.Item;
-import java.util.HashMap;
-
 public class Outlet extends Store {
 	private String cashierName;
 
-	public Outlet(String name, String address, double register, String cashierName) {
-		super(name, address, register);
-		this.cashierName = cashierName;
-	}
-
-	public Outlet(String name, String address, double register, HashMap<Item, Integer> inventory, String cashierName) {
-		super(name, address, register, inventory);
+	public Outlet(String address, String cashierName) {
+		super(address);
 		this.cashierName = cashierName;
 	}
 

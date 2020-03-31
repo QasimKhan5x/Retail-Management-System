@@ -2,6 +2,8 @@ package com.company;
 
 //Complete
 
+import java.util.Objects;
+
 public class Item {
     private static int ids = 0;
     private final int id;
@@ -29,5 +31,19 @@ public class Item {
     @Override
     public String toString() {
         return String.format("%s Price: %.2f", name, price);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Double.compare(item.price, price) == 0 &&
+                name.equals(item.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price);
     }
 }

@@ -8,6 +8,7 @@ import Shops.Outlet;
 import Shops.Store;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 
 public final class Customer {
@@ -71,6 +72,10 @@ public final class Customer {
         order.addItem(item, quantity);
     }
 
+    public void removeFromCart(Item item) {
+        order.getDetails().remove(item);
+    }
+
     public void printBill(Payment payment) {
     	System.out.println("****************************************************");
         System.out.printf("%30s\n%30s\n", storeVisited.getName(), storeVisited.getAddress());
@@ -120,12 +125,17 @@ public final class Customer {
     public void makePayment(Payment payment) {
         if (canMakePayment(payment)) {
             printBill(payment);
-            storeVisited.setRegister(storeVisited.getRegister() + order.getTotalPrice());
+            Store.setRegister(Store.getRegister() + order.getTotalPrice());
             payment.setAmount(payment.getAmount() - order.getTotalPrice());
             //update store inventory
             HashMap<Item, OrderDetails> details = order.getDetails();
             for (Item item : details.keySet())
-                storeVisited.changeItemQuantity(item, -details.get(item).getQuantity());
+                Store.changeItemQuantity(item, -details.get(item).getQuantity());
         }
+    }
+
+    @Override
+    public String toString() {
+        return name + ". Ph: " + phoneNumber;
     }
 }

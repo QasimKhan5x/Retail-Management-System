@@ -1,6 +1,8 @@
 package Payments;
 
 
+import java.util.Objects;
+
 abstract public class Payment {
     private double amount;
 
@@ -21,4 +23,12 @@ abstract public class Payment {
     }
 
     public abstract String getPaymentDetails();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Payment payment = (Payment) o;
+        return Double.compare(payment.amount, amount) == 0;
+    }
 }
