@@ -9,7 +9,7 @@ abstract public class Store {
     protected static String name;
     private String address;
     protected static double register;
-    protected static HashMap<Item, Integer> inventory = new HashMap<>();
+    public static HashMap<Item, Integer> inventory = new HashMap<>();
 
     public Store(String address) {
         this.address = address;
